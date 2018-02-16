@@ -61,7 +61,6 @@ cat Chr3.tmp.txt|awk 'BEGIN{FS="\t";OFS="\t"}{if($1~"MGEScan")print $4;else if($
 cat Chr4.tmp.txt|awk 'BEGIN{FS="\t";OFS="\t"}{if($1~"MGEScan")print $4;else if($4~"MGEScan")print $1}' >Remove_from_LTRharvest.Chr4.list.txt
 cat Chr5.tmp.txt|awk 'BEGIN{FS="\t";OFS="\t"}{if($1~"MGEScan")print $4;else if($4~"MGEScan")print $1}' >Remove_from_LTRharvest.Chr5.list.txt
 cat ChrX.tmp.txt|awk 'BEGIN{FS="\t";OFS="\t"}{if($1~"MGEScan")print $4;else if($4~"MGEScan")print $1}' >Remove_from_LTRharvest.ChrX.list.txt
-echo make list to exclude from gff LTRharvest result complete!
 
 cat Remove_from_LTRharvest.Chr1.list.txt|sed -e 's/LTRharvest_Chr1_/LTR_retrotransposon/g'|sed -e 's/$/;/g'|awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >Remove_from_LTRharvest.Chr1.grep.script.txt
 cat Remove_from_LTRharvest.Chr2.list.txt|sed -e 's/LTRharvest_Chr2_/LTR_retrotransposon/g'|sed -e 's/$/;/g'|awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >Remove_from_LTRharvest.Chr2.grep.script.txt
@@ -69,7 +68,6 @@ cat Remove_from_LTRharvest.Chr3.list.txt|sed -e 's/LTRharvest_Chr3_/LTR_retrotra
 cat Remove_from_LTRharvest.Chr4.list.txt|sed -e 's/LTRharvest_Chr4_/LTR_retrotransposon/g'|sed -e 's/$/;/g'|awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >Remove_from_LTRharvest.Chr4.grep.script.txt
 cat Remove_from_LTRharvest.Chr5.list.txt|sed -e 's/LTRharvest_Chr5_/LTR_retrotransposon/g'|sed -e 's/$/;/g'|awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >Remove_from_LTRharvest.Chr5.grep.script.txt
 cat Remove_from_LTRharvest.ChrX.list.txt|sed -e 's/LTRharvest_ChrX_/LTR_retrotransposon/g'|sed -e 's/$/;/g'|awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >Remove_from_LTRharvest.ChrX.grep.script.txt
-echo grep script to remove LTRharvest complete!
 
 cd ..
 mkdir sep4
@@ -80,7 +78,6 @@ cat ../sep3/LTRharvest_Chr3.txt|grep -v -f ../MGEScan_compare/Remove_from_LTRhar
 cat ../sep3/LTRharvest_Chr4.txt|grep -v -f ../MGEScan_compare/Remove_from_LTRharvest.Chr4.grep.script.txt >LTRharvest_Chr4.gff.txt
 cat ../sep3/LTRharvest_Chr5.txt|grep -v -f ../MGEScan_compare/Remove_from_LTRharvest.Chr5.grep.script.txt >LTRharvest_Chr5.gff.txt
 cat ../sep3/LTRharvest_ChrX.txt|grep -v -f ../MGEScan_compare/Remove_from_LTRharvest.ChrX.grep.script.txt >LTRharvest_ChrX.gff.txt
-echo MGEScan結果との重複部位削除 complete!
 
 cd ..
 mkdir sep5
@@ -130,7 +127,6 @@ cat MGEtoLTR.Chr3.gff.txt|grep -v '#'|sed -e 's/LTRharvest/MGEScan_LTR/g'|sed -e
 cat MGEtoLTR.Chr4.gff.txt|grep -v '#'|sed -e 's/LTRharvest/MGEScan_LTR/g'|sed -e 's/LTRdigest/MGEScan_LTR/g'|sed -e 's/name=AP/name=PR/g'|sed -e 's/name=RVP/name=PR/g'|sed -e 's/name=RNaseH/name=RH/g'|sed -e 's/name=rve/name=RH/g'|sed -e 's/name=RVT/name=RT/g' >MGEtoLTR2.Chr4.gff.txt
 cat MGEtoLTR.Chr5.gff.txt|grep -v '#'|sed -e 's/LTRharvest/MGEScan_LTR/g'|sed -e 's/LTRdigest/MGEScan_LTR/g'|sed -e 's/name=AP/name=PR/g'|sed -e 's/name=RVP/name=PR/g'|sed -e 's/name=RNaseH/name=RH/g'|sed -e 's/name=rve/name=RH/g'|sed -e 's/name=RVT/name=RT/g' >MGEtoLTR2.Chr5.gff.txt
 cat MGEtoLTR.ChrX.gff.txt|grep -v '#'|sed -e 's/LTRharvest/MGEScan_LTR/g'|sed -e 's/LTRdigest/MGEScan_LTR/g'|sed -e 's/name=AP/name=PR/g'|sed -e 's/name=RVP/name=PR/g'|sed -e 's/name=RNaseH/name=RH/g'|sed -e 's/name=RVT/name=RT/g' >MGEtoLTR2.ChrX.gff.txt
-echo MGEScan結果の変換 complete!
 
 cd ..
 mkdir MGE
@@ -339,7 +335,6 @@ cat protein_match.Chr2.ENV.MGEScan.gff.txt|sed -e 's/;reading_frame=.*$//g'|awk 
 cat protein_match.Chr2.ENV.MGEScan.gff.txt|sed -e 's/;reading_frame=.*$//g'|awk 'BEGIN{FS="\t";OFS="\t"}{print $9}'|sed -e 's/^Parent=LTR_retrotransposon//g'|sort -n|uniq|awk 'BEGIN{FS="\t";OFS="\t"}{print "BEGIN{m"$1"=10}{if($1==\""$1"\"&&m"$1">$2)m"$1"=$2}END{print \""$1"\",m"$1"}"}' >protein_match.Chr2.ENV.MGEScan.awk.script1.txt
 cat protein_match.Chr2.ENV.MGEScan.list.txt|awk -f protein_match.Chr2.ENV.MGEScan.awk.script1.txt|sed -e 's/^/Parent=LTR_retrotransposon/g'|awk 'BEGIN{FS=" ";OFS="\t"}{print $2,$1";"}'|awk 'BEGIN{FS="\t";OFS="\t"}{print "BEGIN{FS=\"\\t\";OFS=\"\\t\"}{if($9~\""$2"\"&&$6==\""$1"\")print}"}' >protein_match.Chr2.ENV.MGEScan.awk.script2.txt
 cat protein_match.Chr2.ENV.gff.txt|awk -f protein_match.Chr2.ENV.MGEScan.awk.script2.txt >protein_match.Chr2.ENV.MGEScan.min.gff.txt
-echo Chr2、ENV、MGEScan最小値計算完了
 
 cat protein_match.Chr2.ENV.gff.txt|grep 'LTRdigest' >protein_match.Chr2.ENV.LTRdigest.gff.txt
 cat protein_match.Chr2.ENV.LTRdigest.gff.txt|sed -e 's/;reading_frame=.*$//g'|awk 'BEGIN{FS="\t";OFS="\t"}{print $9,$6}'|sed -e 's/^Parent=LTR_retrotransposon//g' >protein_match.Chr2.ENV.LTRdigest.list.txt
