@@ -7,8 +7,8 @@ This script makes .gff file with LTR and clustering information from LTRharvest,
 
 Requirement
 ---------------------------------
-This script use Genome Tools (http://genometools.org) and CD-HIT (http://weizhongli-lab.org/cd-hit).
+This script requires Genome Tools (http://genometools.org) and CD-HIT (http://weizhongli-lab.org/cd-hit).
 
 Usage:
 ---------------------------------
-./Sp34.LTR.sh  \<MGEscan result\> \<LTRdigest result\> \<original fasta\>
+./Sp34.LTR.sh  \<MGEscan result\> \<LTRdigest result\> \<raw fasta file\>
