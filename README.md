@@ -11,4 +11,4 @@ This script use Genome Tools (http://genometools.org) and CD-HIT (http://weizhon
 
 ##Usage:
 
-./Sp34.LTR.sh  <MGEscan result> <LTRdigest result> <original fasta>
+./Sp34.LTR.sh  \<MGEscan result\> \<LTRdigest result\> \<original fasta\>
