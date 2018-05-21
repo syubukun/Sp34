@@ -1,7 +1,7 @@
 Sp34.LTR.sh
 ====================
 
-##Description  
+#Description  
 This script makes .gff file with LTR and clustering information from LTRharvest, LTRdigest, MGEscan result and raw fasta file.
 
 ##Requirement  
