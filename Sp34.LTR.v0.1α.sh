@@ -1415,7 +1415,7 @@ cat ../complete1/Chr3.gff.txt |awk -f f_and_p.awk.script.txt|sort -n -k4,4 >Chr3
 cat ../complete1/Chr4.gff.txt |awk -f f_and_p.awk.script.txt|sort -n -k4,4 >Chr4.gff.txt
 cat ../complete1/Chr5.gff.txt |awk -f f_and_p.awk.script.txt|sort -n -k4,4 >Chr5.gff.txt
 cat ../complete1/ChrX.gff.txt |awk -f f_and_p.awk.script.txt|sort -n -k4,4 >ChrX.gff.txt
-cat Chr* >Clustered.v1.gff.txt
+cat Chr*gff\.txt >Clustered.v1.gff.txt
 
 cat Cluster.table1.txt|awk 'BEGIN{FS=";"}{if($0~"p"&&$0!~"f"&&$0!~"s")print "Cluster="$1";"}' >par_only.cluster.list.txt
 cat par_only.cluster.list.txt |awk 'BEGIN{ORS="\\\|"}{print}'|sed -e 's/\\|$//g' >par_only.grep.script1.txt
